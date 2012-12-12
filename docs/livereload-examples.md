@@ -1,25 +1,42 @@
 ## Example config
 
 ```javascript
-grunt.initConfig({
-  livereload: {                                  // Task
-    dist: {                                      // Target
-      options: {                                 // Target options
+'use strict';
+var path = require('path');
+var lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
 
-      },
-      files: {                                   // Dictionary of files
-        'dist/': 'src/'      // 'destination': 'source'
-        'dist/': 'src/'
+var folderMount = function folderMount(connect, point) {
+  return connect.static(path.resolve(point));
+};
+
+module.exports = function (grunt) {
+  // Project configuration.
+  grunt.initConfig({
+    connect: {
+      livereload: {
+        options: {
+          port: 9001,
+          middleware: function(connect, options) {
+            return [lrSnippet, folderMount(connect, '.')]
+          }
+        }
       }
     },
-    dev: {                                       // Another target
-      files: {
-        'dist/': 'src/'
-        'dist/': 'src/'
+    // Configuration to be run (and then tested).
+    regarde: {
+      fred: {
+        files: '*.txt',
+        tasks: ['livereload']
       }
     }
-  }
-});
 
-grunt.registerTask('default', ['livereload']);
+  });
+
+  grunt.loadNpmTasks('grunt-regarde');
+  grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-contrib-livereload');
+
+  grunt.registerTask('default', ['livereload-start', 'connect', 'regarde']);
+};
 ```
+

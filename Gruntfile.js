@@ -8,37 +8,31 @@
 
 'use strict';
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
   // Project configuration.
   grunt.initConfig({
     jshint: {
       all: [
         'Gruntfile.js',
         'tasks/*.js',
-        '<%= nodeunit.tests %>'
+        'test/*.js'
       ],
       options: {
         jshintrc: '.jshintrc'
       }
     },
 
-    // Before generating any new files, remove any previously-created files.
-    clean: {
-      test: ['tmp']
-    },
-
-    // Configuration to be run (and then tested).
-    livereload: {
-      compile: {
-        files: {
-          'tmp/': ['test/fixtures/']
-        }
-      }
-    },
-
     // Unit tests.
-    nodeunit: {
-      tasks: ['test/*_test.js']
+    simplemocha: {
+      options: {
+        globals: ['should'],
+        timeout: 3000,
+        ignoreLeaks: false,
+        ui: 'bdd',
+        reporter: 'spec'
+      },
+
+      all: { src: 'test/**/*.js' }
     }
   });
 
@@ -48,12 +42,12 @@ module.exports = function(grunt) {
   // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-nodeunit');
+  grunt.loadNpmTasks('grunt-simple-mocha');
   grunt.loadNpmTasks('grunt-contrib-internal');
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['livereload', 'nodeunit', 'clean']);
+  grunt.registerTask('test', ['simplemocha']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['test', 'build-contrib']);
