@@ -2,7 +2,7 @@
 
 var grunt = require('grunt');
 
-exports.htmlmin = {
+exports.livereload = {
   compile: function(test) {
     test.expect(1);
 

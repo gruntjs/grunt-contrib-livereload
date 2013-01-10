@@ -10,13 +10,12 @@
 
 module.exports = function(grunt) {
   grunt.registerMultiTask('livereload', 'Livereload assets in the browser', function() {
-    var helpers = require('grunt-lib-contrib').init(grunt);
     var options = this.options();
 
     grunt.verbose.writeflags(options, 'Options');
 
-    this.files.forEach(function(el) {
-      
+    this.files.forEach(function(f) {
+
     });
   });
 };
