@@ -7,15 +7,29 @@
  */
 
 'use strict';
+var utils = require('../lib/utils');
+var server;
 
-module.exports = function(grunt) {
-  grunt.registerMultiTask('livereload', 'Livereload assets in the browser', function() {
-    var options = this.options();
+module.exports = function (grunt) {
 
-    grunt.verbose.writeflags(options, 'Options');
+  grunt.registerTask('livereload', 'Inform the browser some files have changed', function () {
+    var files = this.args;
 
-    this.files.forEach(function(f) {
+    if (!server) {
+      grunt.log.error('Server is not started. Please do call livereload-start prior to any other task.');
+      return;
+    }
 
+    grunt.log.verbose.writeln('... Reloading ' + grunt.log.wordlist(files) + ' ...');
+    server.changed({
+      body: {
+        files: files
+      }
     });
+  });
+
+  grunt.registerTask('livereload-start', 'Setup livereload to alert your browser when a file has changed', function () {
+    // Start a websocket server in the background
+    server = utils.startLRServer(grunt, this.async());
   });
 };
