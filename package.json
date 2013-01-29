@@ -25,7 +25,7 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "test": "node node_modules/mocha/bin/mocha test/*_test.js"
+    "test": "grunt test"
   },
   "dependencies": {
     "tiny-lr": "~0.0.2",
