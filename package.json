@@ -22,26 +22,28 @@
   ],
   "main": "Grunfile.js",
   "engines": {
-    "node": ">= 0.8.0"
+    "node": ">=0.8.0"
   },
   "scripts": {
     "test": "grunt test"
   },
   "dependencies": {
-    "tiny-lr": "~0.0.2",
-    "grunt": "~0.4.0rc5"
+    "tiny-lr": "~0.0.4"
   },
   "devDependencies": {
+    "grunt": "0.4.0rc7",
     "grunt-contrib-internal": "*",
-    "grunt-contrib-clean": "~0.4.0rc5",
-    "grunt-contrib-jshint": "~0.1.1rc5",
-    "grunt-contrib-nodeunit": "~0.1.2rc5",
-    "mocha": "~1.7.4",
-    "grunt-simple-mocha": "~0.3.2"
+    "grunt-contrib-clean": "0.4.0rc6",
+    "grunt-contrib-jshint": "0.1.1rc6",
+    "grunt-contrib-nodeunit": "0.1.2rc6",
+    "grunt-simple-mocha": "~0.3.2",
+    "mocha": "~1.8.1"
   },
   "keywords": [
     "gruntplugin",
     "livereload",
-    "reload"
+    "reload",
+    "refresh",
+    "websockets"
   ]
 }
