@@ -1,8 +1,8 @@
 # Options
 
-## optsion
+## port
 
-Type: `Boolean`  
-Default: `false`
+Type: `integer`
+Default: `35729`
 
-Description.
+The port the tiny-lr server should listen on.
