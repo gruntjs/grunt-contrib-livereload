@@ -1,9 +1,8 @@
 'use strict';
-
 var grunt = require('grunt');
 
 exports.livereload = {
-  compile: function(test) {
+  compile: function (test) {
     test.expect(1);
 
     var actual = grunt.file.read('tmp/');
