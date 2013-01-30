@@ -22,7 +22,7 @@ module.exports = function (grunt) {
         }
       }
     },
-    // Configuration to be run (and then tested).
+    // Configuration to be run (and then tested)
     regarde: {
       fred: {
         files: '*.txt',
@@ -39,4 +39,3 @@ module.exports = function (grunt) {
   grunt.registerTask('default', ['livereload-start', 'connect', 'regarde']);
 };
 ```
-
