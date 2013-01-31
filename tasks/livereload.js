@@ -12,7 +12,6 @@ var server;
 
 module.exports = function (grunt) {
   grunt.registerTask('livereload', 'Inform the browser some files have changed', function () {
-    // var files = this.args;
     var files;
 
     if (!server) {
