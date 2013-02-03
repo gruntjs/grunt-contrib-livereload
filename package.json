@@ -1,7 +1,7 @@
 {
   "name": "grunt-contrib-livereload",
   "description": "Reload assets live in the browser",
-  "version": "0.1.0rc7",
+  "version": "0.1.0rc8",
   "homepage": "https://github.com/gruntjs/grunt-contrib-livereload",
   "author": {
     "name": "Grunt Team",

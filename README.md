@@ -111,10 +111,11 @@ module.exports = function (grunt) {
 
 ## Release History
 
+ * 2013-02-03   v0.1.0rc8   Updated to work with latest grunt-regarde.
  * 2013-01-30   v0.1.0rc7   Initial release.
 
 ---
 
 Task submitted by [Frederick Ros](https://github.com/sleeper)
 
-*This file was generated on Wed Jan 30 2013 02:56:42.*
+*This file was generated on Sun Feb 03 2013 21:17:15.*
