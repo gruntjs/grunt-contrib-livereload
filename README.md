@@ -11,7 +11,7 @@ npm install grunt-contrib-livereload --save-dev
 ```
 
 [grunt]: http://gruntjs.com/
-[Getting Started]: https://github.com/gruntjs/grunt/blob/devel/docs/getting_started.md
+[Getting Started]: http://gruntjs.com/getting-started
 
 
 ## Livereload task
@@ -111,11 +111,11 @@ module.exports = function (grunt) {
 
 ## Release History
 
- * 2013-02-03   v0.1.0rc8   Updated to work with latest grunt-regarde.
- * 2013-01-30   v0.1.0rc7   Initial release.
+ * 2013-02-02   v0.1.0rc8   Updated to work with latest grunt-regarde.
+ * 2013-01-29   v0.1.0rc7   Initial release.
 
 ---
 
 Task submitted by [Frederick Ros](https://github.com/sleeper)
 
-*This file was generated on Sun Feb 03 2013 21:17:15.*
+*This file was generated on Tue Feb 05 2013 11:57:18.*
