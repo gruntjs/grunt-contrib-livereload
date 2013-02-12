@@ -1,66 +1,24 @@
 'use strict';
 var assert = require('assert');
 var utils = require('../lib/utils');
+var http = require('http');
+var grunt = require('grunt');
 
-describe('livereloadSnippet', function () {
-  it('should call the next middleware', function (done) {
-    var req = { url: '/' };
-    var res = {};
-    var next = function () {
-      done();
-    };
-    utils.livereloadSnippet(req, res, next);
+describe('utils', function () {
+  it('livereloadSnippet should be obsolete', function () {
+    assert.throws(utils.livereloadSnippet, /Deprecated method/);
   });
 
-  it('should re-write response write function', function (done) {
-    var req = { url: '/' };
-    var headers = {};
-    var implicitHeaderCalled = false;
-    var writeString = '';
-    var res = {
-      socket: {
-        server: {
-          address: function () {
-            return {
-              port: 12345
-            };
-          }
-        }
-      },
-      write: function (string) {
-        writeString = string;
-      },
-      setHeader: function (header, value) {
-        headers[header] = value;
-      },
-      _implicitHeader: function () {
-        implicitHeaderCalled = true;
-      }
-    };
-    var next = function () {
+  it('fallback_reload should trigger reload', function (done) {
+
+    http.createServer(function (req, res) {
+      res.writeHead(200, {'Content-Type': 'text/plain'});
+      res.end();
+      assert.equal(req.url, '/changed?files=/');
       done();
-    };
-    utils.livereloadSnippet(req, res, next);
-    res.write('<body></body>');
-    // original write is called
-    assert.ok(writeString.match(/livereload snippet/));
-    assert.equal(headers['content-length'], 194);
-    assert.ok(implicitHeaderCalled);
+    }).listen(35729);
+
+    utils.fallback_reload(["/"], grunt);
   });
 
-  it('should do nothing if requested page is not an HTML page', function (done) {
-    var req = { url: '/favicon.ico' };
-    var writeString = '';
-    var res = {
-      write: function (string) {
-        writeString = string;
-      }
-    };
-    var next = function () {
-      done();
-    };
-    utils.livereloadSnippet(req, res, next);
-    res.write('fred');
-    assert.equal('fred', writeString);
-  });
 });

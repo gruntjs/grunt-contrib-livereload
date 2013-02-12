@@ -22,11 +22,9 @@ grunt-contrib-livereload is composed of two tasks:
 * `livereload-start`: sets up a local server that will serve the needed js file and the wesocket that will control your browser
 * `livereload`: triggers the browser reload
 
-Additionally a Connect middleware is available to inject a JS snippet into the page to that will connect the browser to the livereload server.
-
 This task support multiple browsers, which means all the browsers listening on the livereload port will be reloaded at the same time.
 
-Note that grunt-contrib-livereload is designed to use [grunt-regarde](https://github.com/yeoman/grunt-regarde) instead grunt-contrib-watch (mainly due to shortcomings in the `watch` task which doesn't give access to changed files because it spawns tasks in subprocesses.)
+Note that grunt-contrib-livereload is designed to use [grunt-regarde](https://github.com/yeoman/grunt-regarde) instead grunt-contrib-watch (mainly due to shortcomings in the `watch` task which doesn't give access to changed files because it spawns tasks in subprocesses). In case you use different watcher, it will instead reload entire page.
 
 
 #### The livereload-start task
@@ -40,22 +38,7 @@ By default the server listens on port 35729, but this can be changed through the
 
 #### The livereload task
 
-This task needs to be called to trigger a reload. It must be passed the list of files that have changed (i.e. `livereload:foo.txt:bar.txt`)
-
-
-#### The middleware
-
-A connect middleware (`livereloadSnippet`) is delivered as an helper (located in `grunt-contrib-livereload/lib/utils`). This middleware must be the first one inserted.
-
-It will be inserted on the fly in your HTML and will connect back to the livereload server.
-
-```html
-<!-- livereload snippet -->
-<script>document.write('<script src=\"http://'
-+ (location.host || 'localhost').split(':')[0]
-+ ':" + port + "/livereload.js?snipver=1\"><\\/script>')
-</script>
-```
+This task needs to be called to trigger a reload. 
 
 ### Options
 
@@ -66,30 +49,20 @@ Default: `35729`
 
 The port the livereload server should listen on.
 
-#### Example config
+### Quick-start steps
+
+ 1. Add livereload-start to default task (runs livereload server)
+ 2. Add html snippet to your page
+ 2. Trigger livereload  with ragarde, watch, etc
+
+#### Gruntfile
 
 ```javascript
 'use strict';
-var path = require('path');
-var lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
-
-var folderMount = function folderMount(connect, point) {
-  return connect.static(path.resolve(point));
-};
 
 module.exports = function (grunt) {
   // Project configuration.
   grunt.initConfig({
-    connect: {
-      livereload: {
-        options: {
-          port: 9001,
-          middleware: function(connect, options) {
-            return [lrSnippet, folderMount(connect, '.')]
-          }
-        }
-      }
-    },
     // Configuration to be run (and then tested)
     regarde: {
       fred: {
@@ -101,21 +74,30 @@ module.exports = function (grunt) {
   });
 
   grunt.loadNpmTasks('grunt-regarde');
-  grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-livereload');
 
-  grunt.registerTask('default', ['livereload-start', 'connect', 'regarde']);
+  grunt.registerTask('default', ['livereload-start', 'regarde']);
 };
 ```
+#### Your web page
+
+```html
+<!-- livereload snippet -->
+<script>document.write('<script src=\"http://'
++ (location.host || 'localhost').split(':')[0]
++ ':35729/livereload.js?snipver=1\"><\\/script>')
+</script>
+```
+
 
 
 ## Release History
 
- * 2013-02-02   v0.1.0rc8   Updated to work with latest grunt-regarde.
- * 2013-01-29   v0.1.0rc7   Initial release.
+ * 2013-02-03   v0.1.0rc8   Updated to work with latest grunt-regarde.
+ * 2013-01-30   v0.1.0rc7   Initial release.
 
 ---
 
 Task submitted by [Frederick Ros](https://github.com/sleeper)
 
-*This file was generated on Tue Feb 05 2013 11:57:18.*
+*This file was generated on Tue Feb 12 2013 21:01:22.*
