@@ -1,27 +1,17 @@
-## Example config
+# Quick-start steps
+
+ 1. Add livereload-start to default task (runs livereload server)
+ 2. Add html snippet to your page
+ 2. Trigger livereload  with ragarde, watch, etc
+
+## Gruntfile
 
 ```javascript
 'use strict';
-var path = require('path');
-var lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
-
-var folderMount = function folderMount(connect, point) {
-  return connect.static(path.resolve(point));
-};
 
 module.exports = function (grunt) {
   // Project configuration.
   grunt.initConfig({
-    connect: {
-      livereload: {
-        options: {
-          port: 9001,
-          middleware: function(connect, options) {
-            return [lrSnippet, folderMount(connect, '.')]
-          }
-        }
-      }
-    },
     // Configuration to be run (and then tested)
     regarde: {
       fred: {
@@ -33,9 +23,18 @@ module.exports = function (grunt) {
   });
 
   grunt.loadNpmTasks('grunt-regarde');
-  grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-livereload');
 
-  grunt.registerTask('default', ['livereload-start', 'connect', 'regarde']);
+  grunt.registerTask('default', ['livereload-start', 'regarde']);
 };
 ```
+## Your web page
+
+```html
+<!-- livereload snippet -->
+<script>document.write('<script src=\"http://'
++ (location.host || 'localhost').split(':')[0]
++ ':35729/livereload.js?snipver=1\"><\\/script>')
+</script>
+```
+
