@@ -3,15 +3,15 @@
 > Reload assets live in the browser
 
 
+
 ## Getting Started
-If you haven't used [grunt][] before, be sure to check out the [Getting Started][] guide, as it explains how to create a [gruntfile][Getting Started] as well as install and use grunt plugins. Once you're familiar with that process, install this plugin with this command:
+If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
 ```shell
 npm install grunt-contrib-livereload --save-dev
 ```
 
-[grunt]: http://gruntjs.com/
-[Getting Started]: http://gruntjs.com/getting-started
+
 
 
 ## Livereload task
@@ -111,6 +111,7 @@ module.exports = function (grunt) {
 
 ## Release History
 
+ * 2013-02-14   v0.1.0   First official release for Grunt 0.4.0.
  * 2013-02-02   v0.1.0rc8   Updated to work with latest grunt-regarde.
  * 2013-01-29   v0.1.0rc7   Initial release.
 
@@ -118,4 +119,4 @@ module.exports = function (grunt) {
 
 Task submitted by [Frederick Ros](https://github.com/sleeper)
 
-*This file was generated on Tue Feb 05 2013 11:57:18.*
+*This file was generated on Fri Feb 15 2013 20:18:41.*
