@@ -111,6 +111,7 @@ module.exports = function (grunt) {
 
 ## Release History
 
+ * 2013-02-16   v0.1.1   Ensure Gruntfile.js is included on npm.
  * 2013-02-14   v0.1.0   First official release for Grunt 0.4.0.
  * 2013-02-02   v0.1.0rc8   Updated to work with latest grunt-regarde.
  * 2013-01-29   v0.1.0rc7   Initial release.
@@ -119,4 +120,4 @@ module.exports = function (grunt) {
 
 Task submitted by [Frederick Ros](https://github.com/sleeper)
 
-*This file was generated on Fri Feb 15 2013 20:18:41.*
+*This file was generated on Sun Feb 17 2013 21:43:27.*
