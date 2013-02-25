@@ -119,13 +119,14 @@ module.exports = function (grunt) {
 
 ## Release History
 
- * 2013-02-16   v0.1.1   Ensure Gruntfile.js is included on npm.
- * 2013-02-14   v0.1.0   First official release for Grunt 0.4.0.
- * 2013-02-02   v0.1.0rc8   Updated to work with latest grunt-regarde.
- * 2013-01-29   v0.1.0rc7   Initial release.
+ * 2013-02-25   v0.1.2   Strip query params from url. Set correct Content-Length for multi-byte files.
+ * 2013-02-17   v0.1.1   Ensure Gruntfile.js is included on npm.
+ * 2013-02-15   v0.1.0   First official release for Grunt 0.4.0.
+ * 2013-02-03   v0.1.0rc8   Updated to work with latest grunt-regarde.
+ * 2013-01-30   v0.1.0rc7   Initial release.
 
 ---
 
 Task submitted by [Frederick Ros](https://github.com/sleeper)
 
-*This file was generated on Wed Feb 20 2013 12:35:59.*
+*This file was generated on Mon Feb 25 2013 20:22:26.*

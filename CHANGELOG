@@ -1,3 +1,8 @@
+v0.1.2:
+  date: 2013-02-25
+  changes:
+    - Strip query params from url.
+    - Set correct Content-Length for multi-byte files.
 v0.1.1:
   date: 2013-02-17
   changes:
