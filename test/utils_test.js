@@ -41,10 +41,10 @@ describe('livereloadSnippet', function () {
       done();
     };
     utils.livereloadSnippet(req, res, next);
-    res.write('<body></body>');
+    res.write('<body>我能吞下玻璃而不伤身体。</body>','ascii');
     // original write is called
     assert.ok(writeString.match(/livereload snippet/));
-    assert.equal(headers['content-length'], 194);
+    assert.equal(headers['content-length'], 206);
     assert.ok(implicitHeaderCalled);
   });
 
