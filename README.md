@@ -100,8 +100,8 @@ module.exports = function (grunt) {
     },
     // Configuration to be run (and then tested)
     regarde: {
-      fred: {
-        files: '*.txt',
+      txt: {
+        files: '**/*.txt',
         tasks: ['livereload']
       }
     }
