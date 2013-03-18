@@ -98,4 +98,63 @@ describe('livereloadSnippet', function () {
     res.write('fred');
     assert.equal('fred', writeString);
   });
+
+  it('should re-write response send function', function (done) {
+    var req = { url: '/' };
+    var sendBody = '';
+    var res = {
+      send: function (body) {
+        sendBody = body;
+      }
+    };
+    var next = function () {
+      done();
+    };
+    utils.livereloadSnippet(req, res, next);
+    res.send('<body>我能吞下玻璃而不伤身体。</body>');
+    // original send is called
+    assert.ok(sendBody.match(/livereload snippet/));
+  });
+
+  it('should do nothing if sending just the http status code', function (done) {
+    var req = { url: '/' };
+    var statusCode = -1;
+    var res = {
+      send: function (body) {
+        statusCode = body;
+      }
+    };
+    var next = function () {
+      done();
+    };
+    utils.livereloadSnippet(req, res, next);
+    res.send(200);
+    assert.equal(200, statusCode);
+  });
+
+  it('should support optional status code as first or second argument when doing res.send()', function (done) {
+    var req = { url: '/' };
+    var statusCode = -1;
+    var sendBody = '';
+    var res = {
+      send: function (body) {
+        statusCode = body;
+        sendBody = arguments[1];
+      }
+    };
+    var next = function() {
+      done();
+    };
+    utils.livereloadSnippet(req, res, next);
+    res.send(200, '<body>hello</body>');
+    assert.ok(sendBody.match(/livereload snippet/));
+    assert.equal(200, statusCode);
+
+    // resetting for case 2
+    statusCode = -1;
+    sendBody = '';
+    res.send('<body>hello</body>', 200);
+    assert.ok(sendBody.match(/livereload snippet/));
+    assert.equal(200, statusCode);
+  });
 });
