@@ -34,9 +34,6 @@ Additionally a Connect middleware is available to inject a JS snippet into the p
 
 This task support multiple browsers, which means all the browsers listening on the livereload port will be reloaded at the same time.
 
-Note that grunt-contrib-livereload is designed to use [grunt-regarde](https://github.com/yeoman/grunt-regarde) instead grunt-contrib-watch (mainly due to shortcomings in the `watch` task which doesn't give access to changed files because it spawns tasks in subprocesses.)
-
-
 #### The livereload-start task
 
 This task starts a server ([tiny-lr](https://github.com/mklabs/tiny-lr)) in the background, which will:
@@ -44,12 +41,6 @@ This task starts a server ([tiny-lr](https://github.com/mklabs/tiny-lr)) in the 
 * act as a websocket server: each browser that opens a websocket to this server will be refreshed
 
 By default the server listens on port 35729, but this can be changed through the `port` options.
-
-
-#### The livereload task
-
-This task needs to be called to trigger a reload. It must be passed the list of files that have changed (i.e. `livereload:foo.txt:bar.txt`)
-
 
 #### The middleware
 
@@ -99,7 +90,7 @@ module.exports = function (grunt) {
       }
     },
     // Configuration to be run (and then tested)
-    regarde: {
+    watch: {
       txt: {
         files: '**/*.txt',
         tasks: ['livereload']
@@ -108,17 +99,17 @@ module.exports = function (grunt) {
 
   });
 
-  grunt.loadNpmTasks('grunt-regarde');
+  grunt.loadNpmTasks('grunt-contrib-reload');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-livereload');
 
-  grunt.registerTask('default', ['livereload-start', 'connect', 'regarde']);
+  grunt.registerTask('default', ['livereload-start', 'connect', 'watch']);
 };
 ```
 
 
 ## Release History
-
+ * 2013-03-23   v0.2.0   Added support for *grunt-contrib-reload*.
  * 2013-02-25   v0.1.2   Strip query params from url. Set correct Content-Length for multi-byte files.
  * 2013-02-17   v0.1.1   Ensure Gruntfile.js is included on npm.
  * 2013-02-15   v0.1.0   First official release for Grunt 0.4.0.

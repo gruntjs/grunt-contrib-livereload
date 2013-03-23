@@ -11,7 +11,7 @@ var utils = require('../lib/utils');
 var server;
 
 module.exports = function (grunt) {
-  grunt.registerTask('livereload', 'Inform the browser some files have changed', function () {
+  grunt.registerTask('livereload', 'dummy livereload task', function () {
     var files;
 
     if (!server) {
@@ -20,7 +20,8 @@ module.exports = function (grunt) {
     }
 
     if (!grunt.regarde) {
-      grunt.log.error('Seems like this task has not been triggered by grunt-regarde.');
+      // Seems like this task has not been triggered by grunt-regarde
+      // We will rely on watch's event dispatch
       return;
     }
 
@@ -42,5 +43,16 @@ module.exports = function (grunt) {
   grunt.registerTask('livereload-start', 'Setup livereload to alert your browser when a file has changed', function () {
     // Start a websocket server in the background
     server = utils.startLRServer(grunt, this.async());
+
+    // listen for watch events
+    grunt.event.on('watch', function(action, data){
+      if ('changed' !== action) {
+        return;
+      }
+      var files = Array.isArray(data) ? data : [data];
+      grunt.log.verbose.writeln('... Reloading ' + grunt.log.wordlist(files) + ' ...');
+      server.changed({body:{files: files}});
+    });
+
   });
 };
