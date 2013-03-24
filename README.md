@@ -99,7 +99,7 @@ module.exports = function (grunt) {
 
   });
 
-  grunt.loadNpmTasks('grunt-contrib-reload');
+  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-livereload');
 
@@ -109,7 +109,7 @@ module.exports = function (grunt) {
 
 
 ## Release History
- * 2013-03-23   v0.2.0   Added support for *grunt-contrib-reload*.
+ * 2013-03-23   v0.2.0   Added support for *grunt-contrib-watch*.
  * 2013-02-25   v0.1.2   Strip query params from url. Set correct Content-Length for multi-byte files.
  * 2013-02-17   v0.1.1   Ensure Gruntfile.js is included on npm.
  * 2013-02-15   v0.1.0   First official release for Grunt 0.4.0.
