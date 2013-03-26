@@ -88,6 +88,9 @@ var folderMount = function folderMount(connect, point) {
 module.exports = function (grunt) {
   // Project configuration.
   grunt.initConfig({
+    livereload: {
+      port: 35729 // Default livereload listening port.
+    },
     connect: {
       livereload: {
         options: {
