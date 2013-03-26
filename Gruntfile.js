@@ -22,6 +22,17 @@ module.exports = function (grunt) {
       }
     },
 
+    // watch task
+    watchActual: {
+      test: {
+        options: {
+          nospawn: true
+        },
+        files: ['tasks/*.js', 'test/*.js', 'lib/*.js'],
+        tasks: []
+      }
+    },
+
     // Unit tests.
     simplemocha: {
       options: {
@@ -39,11 +50,16 @@ module.exports = function (grunt) {
   // Actually load this plugin's task(s).
   grunt.loadTasks('tasks');
 
-  // These plugins provide necessary tasks.
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-simple-mocha');
-  grunt.loadNpmTasks('grunt-contrib-internal');
+  // load all grunt tasks
+  require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+
+
+  grunt.renameTask('watch', 'watchActual');
+
+  grunt.registerTask('watch', [
+    'livereload-start',
+    'watchActual'
+  ]);
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.

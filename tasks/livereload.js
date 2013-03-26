@@ -11,16 +11,16 @@ var utils = require('../lib/utils');
 var server;
 
 module.exports = function (grunt) {
-  grunt.registerTask('livereload', 'Inform the browser some files have changed', function () {
+  grunt.registerTask('livereload', 'dummy livereload task', function () {
     var files;
 
     if (!server) {
-      grunt.log.error('Server is not started. Please do call livereload-start prior to any other task.');
       return;
     }
 
     if (!grunt.regarde) {
-      grunt.log.error('Seems like this task has not been triggered by grunt-regarde.');
+      // Seems like this task has not been triggered by grunt-regarde
+      // We will rely on watch's event dispatch
       return;
     }
 
@@ -39,8 +39,53 @@ module.exports = function (grunt) {
     });
   });
 
-  grunt.registerTask('livereload-start', 'Setup livereload to alert your browser when a file has changed', function () {
+  // all changed files
+  var filesChanged = [];
+  // If a reload operation is already queued
+  var reloadOp = false;
+
+  grunt.registerTask('livereload-start', 'Setup livereload to alert your' +
+    ' browser when a file has changed', function () {
     // Start a websocket server in the background
     server = utils.startLRServer(grunt, this.async());
+
+    // listen for watch events
+    grunt.event.on('watch', onWatch);
   });
+
+  /**
+   * Callback for "watch" event.
+   *
+   * @param  {string} action The action triggered.
+   * @param  {string} data The file changed.
+   */
+  function onWatch(action, data) {
+    if ('changed' !== action) {
+      return;
+    }
+
+    var files = Array.isArray(data) ? data : [data];
+    grunt.log.writeln('... Queued for Reload ' + grunt.log.wordlist(files) + ' ...');
+
+    // queue up
+    filesChanged = filesChanged.concat(files);
+
+    if (reloadOp) {
+      return;
+    }
+    reloadOp = true;
+
+    setTimeout(lazyReload, 300);
+  }
+
+  /**
+   * Trigger Live Reload, reset switches.
+   *
+   */
+  function lazyReload() {
+    grunt.log.writeln('... Reloading!');
+    server.changed({body:{files: filesChanged}});
+    filesChanged = [];
+    reloadOp = false;
+  }
 };
