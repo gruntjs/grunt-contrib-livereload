@@ -59,7 +59,7 @@ It will be inserted on the fly in your HTML and will connect back to the liverel
 
 ```html
 <!-- livereload snippet -->
-<script>document.write('<script src=\"http://'
+<script>document.write('<script async="" src=\"http://'
 + (location.host || 'localhost').split(':')[0]
 + ':" + port + "/livereload.js?snipver=1\"><\\/script>')
 </script>
