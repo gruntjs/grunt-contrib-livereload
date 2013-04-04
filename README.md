@@ -61,7 +61,7 @@ It will be inserted on the fly in your HTML and will connect back to the liverel
 <!-- livereload snippet -->
 <script>document.write('<script src=\"http://'
 + (location.host || 'localhost').split(':')[0]
-+ ':" + port + "/livereload.js?snipver=1\"><\\/script>')
++ ':" + clientPort + "/livereload.js?snipver=1\"><\\/script>')
 </script>
 ```
 
@@ -73,6 +73,12 @@ Type: `integer`
 Default: `35729`
 
 The port the livereload server should listen on.
+
+#### clientPort
+Type: `integer`
+Default: `port`
+
+The port where livereload is accessible by the client. Can be useful behind a HTTP reverse proxy.
 
 #### Example config
 
