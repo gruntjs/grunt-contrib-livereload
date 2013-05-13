@@ -23,4 +23,4 @@ Default: `false`
 Whether the snippet link should use HTTPS protocol.
 
 Note: The livereload server does not itself support HTTPS! Only use this option
-if you are accessing the livereload server via a proxy.
+if you are accessing the livereload server via a HTTPS proxy.
