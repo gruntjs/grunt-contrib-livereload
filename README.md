@@ -27,7 +27,7 @@ _Run this task with the `grunt livereload` command._
 
 grunt-contrib-livereload is composed of two tasks:
 
-* `livereload-start`: sets up a local server that will serve the needed js file and the wesocket that will control your browser
+* `livereload-start`: sets up a local server that will serve the needed js file and the websocket that will control your browser
 * `livereload`: triggers the browser reload
 
 Additionally a Connect middleware is available to inject a JS snippet into the page to that will connect the browser to the livereload server.
