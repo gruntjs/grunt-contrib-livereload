@@ -1,3 +1,4 @@
+# This plugin is out of date, [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch) now has an [option](https://github.com/gruntjs/grunt-contrib-watch#optionslivereload) for livereload.
 # grunt-contrib-livereload [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-livereload.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-livereload)
 
 > Reload assets live in the browser
