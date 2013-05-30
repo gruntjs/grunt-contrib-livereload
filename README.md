@@ -1,7 +1,8 @@
-# grunt-contrib-livereload [![Build Status](https://secure.travis-ci.org/gruntjs/grunt-contrib-livereload.png?branch=master)](http://travis-ci.org/gruntjs/grunt-contrib-livereload)
+# [deprecated] grunt-contrib-livereload
 
-> Reload assets live in the browser
+**Deprecated in favor of [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch#optionslivereload) which now have Livereload support built-in.**
 
+---
 
 
 ## Getting Started
